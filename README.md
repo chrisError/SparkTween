@@ -1,6 +1,8 @@
 # SparkTween
 A tiny teeny tween function for SparkAR
 ### by <a href="https://www.instagram.com/chriserror/">chrisError</a>
+https://pl.ai
+
 
 Doesn't add any new functionality to SparkAR, instead it just wraps the Animation, TimeDriver and Samplers into (I think) an easier to read format, so if you are used to TweenMax / TweenLite or DoTween in Unity etc then the syntax below _should_ be pretty readable to you.
 
