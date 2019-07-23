@@ -8,10 +8,6 @@ Doesn't add any new functionality to SparkAR, instead it just wraps the Animatio
 sceneObject.transform.x = Tween(-100, 100, 5, 10000, true, Ease.BOUNCE_OUT, OnAnimationCompleteCallback);
 
 
-if you like this / find it useful why not follow me on the Instagrams @chrisError
-
-
-
 <b>ToDo</b>
 <br>create some real docs
 <br>look at adding support for sequences
