@@ -62,36 +62,11 @@ function Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCall
 	});
 	var sampler;
 
-	if (ease == Ease.LINEAR || ease == null) sampler = Animation.samplers.linear(startVal, endVal);
-	if (ease == Ease.BOUNCE_IN) sampler = Animation.samplers.easeInBounce(startVal, endVal);
-	if (ease == Ease.BOUNCE_OUT) sampler = Animation.samplers.easeOutBounce(startVal, endVal);
-	if (ease == Ease.EASE_IN_BACK) sampler = Animation.samplers.easeInBack(startVal, endVal);
-	if (ease == Ease.EASE_IN_CIRC) sampler = Animation.samplers.easeInCirc(startVal, endVal);
-	if (ease == Ease.EASE_IN_CUBIC) sampler = Animation.samplers.easeInCubic(startVal, endVal);
-	if (ease == Ease.EASE_IN_ELASTIC) sampler = Animation.samplers.easeInElastic(startVal, endVal);
-	if (ease == Ease.EASE_IN_EXPO) sampler = Animation.samplers.easeInExpo(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_BACK) sampler = Animation.samplers.easeInOutBack(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_BOUNCE) sampler = Animation.samplers.easeInOutBack(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_CIRC) sampler = Animation.samplers.easeInOutCirc(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_ELASTIC) sampler = Animation.samplers.easeInOutElastic(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_EXPO) sampler = Animation.samplers.easeInOutExpo(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_QUAD) sampler = Animation.samplers.easeInOutQuad(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_QUART) sampler = Animation.samplers.easeInOutQuart(startVal, endVal);
-	if (ease == Ease.EASE_IN_OUT_SINE) sampler = Animation.samplers.easeInQuart(startVal, endVal);
-	if (ease == Ease.EASE_IN_QUAD) sampler = Animation.samplers.easeInQuad(startVal, endVal);
-	if (ease == Ease.EASE_IN_QUART) sampler = Animation.samplers.easeInQuart(startVal, endVal);
-	if (ease == Ease.EASE_IN_QUINT) sampler = Animation.samplers.easeInQuint(startVal, endVal);
-	if (ease == Ease.EASE_IN_SINE) sampler = Animation.samplers.easeInSine(startVal, endVal);
-	if (ease == Ease.EASE_OUT_BACK) sampler = Animation.samplers.easeOutBack(startVal, endVal);
-	if (ease == Ease.EASE_OUT_CIRC) sampler = Animation.samplers.easeOutCirc(startVal, endVal);
-	if (ease == Ease.EASE_OUT_CUBIC) sampler = Animation.samplers.easeOutCubic(startVal, endVal);
-	if (ease == Ease.EASE_OUT_ELASTIC) sampler = Animation.samplers.easeOutElastic(startVal, endVal);
-	if (ease == Ease.EASE_OUT_EXPO) sampler = Animation.samplers.easeOutExpo(startVal, endVal);
-	if (ease == Ease.EASE_OUT_QUAD) sampler = Animation.samplers.easeOutQuad(startVal, endVal);
-	if (ease == Ease.EASE_OUT_QUART) sampler = Animation.samplers.easeOutQuart(startVal, endVal);
-	if (ease == Ease.EASE_OUT_QUINT) sampler = Animation.samplers.easeOutQuint(startVal, endVal);
-	if (ease == Ease.EASE_OUT_SINE) sampler = Animation.samplers.easeOutSine(startVal, endVal);
-
+	try {
+		sampler = Animation.samplers[ease](startVal, endVal);
+	} catch (e) {
+		sampler = Animation.samplers.linear(startVal, endVal);
+	}
 
 	if (completeCallback != null) {
 		driver.onCompleted().subscribe(completeCallback);
