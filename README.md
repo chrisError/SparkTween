@@ -10,8 +10,8 @@ sceneObject.transform.x = Tween(-100, 100, 5, 10000, true, Ease.BOUNCE_OUT, OnAn
 if you like this / find it useful why not follow me on the Instagrams @chrisError
 
 
-TODO:
 
+<b>ToDo</b>
 <br>create some real docs
 <br>look at adding support for sequences
 <br>moar testing
