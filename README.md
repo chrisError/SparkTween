@@ -6,6 +6,7 @@ Doesn't add any new functionality to SparkAR, instead it just wraps the Animatio
 
 
 Tween(startValue, endValue, duration, loopCount, mirror, easeType, completeCallback) 
+
 e.g.
 
 sceneObject.transform.x = Tween(-100, 100, 5, 10000, true, Ease.BOUNCE_OUT, OnAnimationCompleteCallback);
