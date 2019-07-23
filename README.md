@@ -12,6 +12,9 @@ if you like this / find it useful why not follow me on the Instagrams @chrisErro
 
 TODO:
 
-create some real docs,look at adding support for sequences,moar testing,need to add infinite loops for loop count
+<br>create some real docs
+<br>look at adding support for sequences
+<br>moar testing
+<br>add infinite loops for loop count
 
 
