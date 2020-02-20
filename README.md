@@ -4,20 +4,34 @@ A tiny teeny tween function for SparkAR
 https://pl.ai
 
 
-Doesn't add any new functionality to SparkAR, instead it just wraps the Animation, TimeDriver and Samplers into (I think) an easier to read format, so if you are used to TweenMax / TweenLite or DoTween in Unity etc then the syntax below _should_ be pretty readable to you.
+make sure to add the following to which ever scripts need to use SparkTween
 
 
-Tween(startValue, endValue, duration, loopCount, mirror, easeType, completeCallback) 
+const {
+	Tween,
+	Ease,
+	SparkTweener
+} = require("./tween.js");
 
-e.g.
-
-sceneObject.transform.x = Tween(-100, 100, 5, 10000, true, Ease.BOUNCE_OUT, OnAnimationCompleteCallback);
+Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCallback) 
 
 
-<b>ToDo</b>
-<br>create some real docs
-<br>look at adding support for sequences
-<br>moar testing
-<br>add infinite loops for loop count
+##SIMPLE USAGE (using the tween directly)
+var sceneObject = Scene.root.find("MySceneObject);
+sceneObject.transform.y = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null).animation;
+
+
+##EXTENDED FUNCIONALITY
+var sceneObject = Scene.root.find("MySceneObject);
+var tween = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null);
+sceneObject.transform.y = tween.animation;
+
+tween.Kill(); //CALL THIS WHEN YOU WANT TO KILL THE TWEEN
+
+tweens also now support infinite loops by passing -1 as the loopCount
+
+
+@chrisError 20 / 02 / 2020
+
 
 
