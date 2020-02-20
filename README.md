@@ -15,9 +15,12 @@ const {
 
 Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCallback) 
 
+### breaking changes from previous version
+please note the .animation when setting the tween to a property
 
 ## SIMPLE USAGE (using the tween directly)
 var sceneObject = Scene.root.find("MySceneObject);
+
 sceneObject.transform.y = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null).animation;
 
 
