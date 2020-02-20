@@ -14,12 +14,19 @@ const {
 } = require("./tween.js");
 
 Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCallback) 
+
 startVal - start value for tween
+
 endVal - end value for tween
+
 duration - length of time for tween (in seconds)
+
 loopCount - how many times should the tween loop (-1 for infinite)
+
 mirror - bool  - should the tween yoyo 
+
 ease - ease type [see enum for supported eases]
+
 completeCallback - method to call on complete
 
 
