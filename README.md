@@ -45,6 +45,7 @@ sceneObject.transform.y = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null).animat
 var sceneObject = Scene.root.find("MySceneObject);
 
 var tween = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null);
+
 sceneObject.transform.y = tween.animation;
 
 tween.Kill(); //CALL THIS WHEN YOU WANT TO KILL THE TWEEN
