@@ -1,13 +1,44 @@
-// SparkTween needs the following libraries
+// function Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCallback) {}
 
-const Scene = require('Scene');
-const Diagnostics = require('Diagnostics');
+
+/*
+
+---NOTES-----
+
+make sure to add the following to which ever scripts need to use SparkTween
+
+
+const {
+	Tween,
+	Ease,
+	SparkTweener
+} = require("./tween.js");
+
+
+
+SIMPLE USAGE (using the tween directly)
+var sceneObject = Scene.root.find("MySceneObject);
+sceneObject.transform.y = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null).animation;
+
+
+EXTENDED FUNCIONALITY
+var sceneObject = Scene.root.find("MySceneObject);
+var tween = Tween(0.35, 2, 4, -1, false, Ease.LINEAR, null);
+sceneObject.transform.y = tween.animation;
+
+tween.Kill(); //CALL THIS WHEN YOU WANT TO KILL THE TWEEN
+
+
+@chrisError 20 / 02 / 2020
+
+*/
+const Time = require('Time');
+const Reactive = require('Reactive');
 const Animation = require('Animation');
 
 
+export const Ease = {
 
-
-const Ease = {
 	LINEAR: "linear",
 	BOUNCE_IN: "easeInBounce",
 	BOUNCE_OUT: "easeOutBounce",
@@ -53,7 +84,28 @@ const Ease = {
 
 };
 
-function Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCallback) {
+export class SparkTweener {
+	constructor(animation, driver, sub) {
+		this.animation = animation;
+		this.driver = driver;
+		this.sub = sub;
+	}
+
+	Kill() {
+		this.driver.stop();
+		if (this.sub != null) {
+			this.sub.unsubscribe();
+		}
+	}
+
+
+}
+
+export function Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCallback) {
+
+	if (loopCount == -1) {
+		loopCount = Infinity;
+	}
 	var driver = Animation.timeDriver({
 		durationMilliseconds: duration * 1000,
 		loopCount: loopCount,
@@ -67,21 +119,16 @@ function Tween(startVal, endVal, duration, loopCount, mirror, ease, completeCall
 	} catch (e) {
 		sampler = Animation.samplers.linear(startVal, endVal);
 	}
+	var sub = null;
 
 	if (completeCallback != null) {
-		driver.onCompleted().subscribe(completeCallback);
+		var sub = driver.onCompleted().subscribe(completeCallback);
+		driver.callback = sub;
 	}
 
 	driver.start();
 
-	return Animation.animate(driver, sampler);
+	var tweener = new SparkTweener(Animation.animate(driver, sampler), driver, sub);
+
+	return tweener;
 }
-
-
-
-//EXAMPLE USAGE
-/*
-	anim.transform.rotationZ = Tween(-.1, .1, 6, 10000, true, Ease.LINEAR, null);
-	anim.transform.y = Tween(-27, 8, 8, 1, true, Ease.LINEAR, OnRaiseUpComplete);
-	anim.transform.x = Tween(-17, -15, 4, 1000, true, Ease.LINEAR, null);
-*/
